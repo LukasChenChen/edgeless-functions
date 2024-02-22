@@ -14,4 +14,4 @@ fn main() {
     println!("Hello World!");
 }
 
-export!(main);
+main;
