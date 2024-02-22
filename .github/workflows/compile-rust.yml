@@ -9,4 +9,6 @@ jobs:
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: cargo test
       - run: cargo fmt
+      - run: cargo build --target=wasm32-unknown-unknown --release
+      - run: ls -al target/
 
