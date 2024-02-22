@@ -13,8 +13,11 @@ jobs:
       - run: cargo fmt
       - run: cargo build --target=wasm32-unknown-unknown --release
       - run: ls -al target/
-      - run: rustup target install i686-unknown-linux-gnu
+      - run: rustup target install x86_64-unknown-linux-gnu
       - run: sudo apt install gcc-multilib
-      - run: cargo build --target=i686-unknown-linux-gnu
-      - run: ls -al
+      - run: cargo build --target=x86_64-unknown-linux-gnu
+      - run: ls -al target/
+      - run: rustup target install aarch64-unknown-linux-gnu
+      - run: cargo build --target=aarch64-unknown-linux-gnu
+      - run: ls -al target/
 
