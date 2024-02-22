@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: © 2023 Technical University of Munich, Chair of Connected Mobility
+
 # SPDX-License-Identifier: MIT
 [workspace]
 
@@ -12,9 +12,7 @@ version = "0.1.0"
 authors = ["Chen Chen <cc2181@cam.ac.uk>"]
 edition = "2021"
 
-[lib]
-name = "edgeless_sample_hello_world"
-path = "src/lib.rs"
+
 
 
 

@@ -7,11 +7,21 @@
 // You can always return to the original code by clicking the "Reset" button ->
 
 // This is the main function.
+#[allow(dead_code)]
 fn main() {
+    
+    helloworld();
+}
+
+
+#[allow(dead_code)]
+fn helloworld() {
     // Statements here are executed when the compiled binary is called.
 
     // Print text to the console.
     println!("Hello World!");
 }
 
-main;
+
+
+
