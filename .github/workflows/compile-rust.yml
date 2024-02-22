@@ -13,4 +13,7 @@ jobs:
       - run: cargo fmt
       - run: cargo build --target=wasm32-unknown-unknown --release
       - run: ls -al target/
+      - run: rustup target install i686-unknown-linux-gnu
+      - run: rustup target install i686-unknown-linux-gnu
+      - run: ls -al
 
