@@ -7,7 +7,7 @@ lto = true
 opt-level = "s"
 
 [package]
-name = "edgeless_sample_hello-world"
+name = "edgeless_sample_hello_world"
 version = "0.1.0"
 authors = ["Chen Chen <cc2181@cam.ac.uk>"]
 edition = "2021"
