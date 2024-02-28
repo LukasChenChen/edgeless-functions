@@ -1,6 +1,10 @@
 name: complie-rust
 run-name: ${{ github.actor }} is compling binaries for Rust
-on: [push]
+on:
+  push:
+    #pattern matched against refs/tags
+    tags:
+      - '*'
 # add persmission for publish release
 permissions:
   contents: write
@@ -35,7 +39,7 @@ jobs:
           files: | 
             /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world
             /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/edgeless_sample_hello_world
-            /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32-unknown-unknown/release/edgeless_sample_hello_world
+            /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32-unknown-unknown/release/edgeless_sample_hello_world.wasm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
