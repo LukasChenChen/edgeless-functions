@@ -31,6 +31,7 @@ jobs:
             target/aarch64-unknown-linux-gnu
             target/wasm32-unknown-unknown
             target/x86_64-unknown-linux-gnu
+            tag_name: test
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
