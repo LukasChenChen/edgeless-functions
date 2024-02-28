@@ -5,7 +5,6 @@ jobs:
   compile-for-rust:
     runs-on: ubuntu-latest
     steps:
-      - name: compile to binaries
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: rustup component add rust-std
