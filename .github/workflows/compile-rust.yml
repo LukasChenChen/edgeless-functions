@@ -1,6 +1,7 @@
 name: complie-rust
 run-name: ${{ github.actor }} is compling binaries for Rust
 on: [push]
+# add persmission for publish release
 permissions:
   contents: write
 jobs:
@@ -18,20 +19,23 @@ jobs:
       - run: ls -al target/
       - run: rustup target install x86_64-unknown-linux-gnu
       - run: sudo apt install gcc-multilib
-      - run: cargo build --target=x86_64-unknown-linux-gnu
+      - run: cargo build --target=x86_64-unknown-linux-gnu --release
       - run: ls -al target/
+      #add dependencies for aarch64
       - run: rustup target install aarch64-unknown-linux-gnu
       - run: sudo apt-get install gcc-aarch64-linux-gnu
       - run: echo "[target.aarch64-unknown-linux-gnu]" > ~/.cargo/config.toml
       - run: echo "linker = \"aarch64-linux-gnu-gcc\"" >> ~/.cargo/config.toml
-      - run: cargo build --target=aarch64-unknown-linux-gnu
+      - run: cargo build --target=aarch64-unknown-linux-gnu --release
       - run: ls -al target/
       - run: pwd
       - name: publish a release
         uses: softprops/action-gh-release@v1
         with:
           files: | 
-            /home/runner/work/edgeless-functions/edgeless-functions/target/*
+            /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world
+            /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/edgeless_sample_hello_world
+            /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32-unknown-unknown/release/edgeless_sample_hello_world
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
