@@ -1,6 +1,8 @@
 name: complie-rust
 run-name: ${{ github.actor }} is compling binaries for Rust
 on: [push]
+permissions:
+  contents: write
 jobs:
   compile-for-rust:
     runs-on: ubuntu-latest
