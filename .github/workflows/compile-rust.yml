@@ -30,9 +30,6 @@ jobs:
         with:
           files: | 
             /home/runner/work/edgeless-functions/edgeless-functions/target/*
-            /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64*
-            /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32*
-            /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64*
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
