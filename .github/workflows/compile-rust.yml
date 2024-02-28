@@ -27,8 +27,6 @@ jobs:
       - run: pwd
       - name: publish a release
         uses: softprops/action-gh-release@v1
-        run: ls -al target/
-        run: ls -al
         with:
           files: | 
             /home/runner/work/edgeless-functions/edgeless-functions/target/*
