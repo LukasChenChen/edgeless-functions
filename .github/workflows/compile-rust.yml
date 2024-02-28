@@ -25,7 +25,6 @@ jobs:
       - run: cargo build --target=aarch64-unknown-linux-gnu
       - run: ls -al target/
       - run: pwd
-      - name: R
       - name: publish a release
         uses: softprops/action-gh-release@v1
         with:
