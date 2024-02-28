@@ -27,8 +27,11 @@ jobs:
       - run: pwd
       - name: publish a release
         uses: softprops/action-gh-release@v1
+        run: ls -al target/
+        run: ls -al
         with:
           files: | 
+            /home/runner/work/edgeless-functions/edgeless-functions/target/*
             /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64*
             /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32*
             /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64*
