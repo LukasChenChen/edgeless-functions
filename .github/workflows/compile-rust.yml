@@ -23,4 +23,17 @@ jobs:
       - run: echo "linker = \"aarch64-linux-gnu-gcc\"" >> ~/.cargo/config.toml
       - run: cargo build --target=aarch64-unknown-linux-gnu
       - run: ls -al target/
+    steps:
+      - name: publish a release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: | 
+            target/aarch64-unknown-linux-gnu
+            target/wasm32-unknown-unknown
+            target/x86_64-unknown-linux-gnu
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref_name }}
+    
+
 
