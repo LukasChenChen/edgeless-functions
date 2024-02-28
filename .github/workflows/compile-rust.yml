@@ -29,9 +29,9 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: | 
-            'pwd'/target/aarch64-unknown-linux-gnu
-            'pwd'/target/wasm32-unknown-unknown
-            'pwd'/target/x86_64-unknown-linux-gnu
+            ./target/aarch64-unknown-linux-gnu
+            ./target/wasm32-unknown-unknown
+            ./target/x86_64-unknown-linux-gnu
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
