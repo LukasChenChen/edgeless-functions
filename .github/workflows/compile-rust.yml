@@ -50,8 +50,8 @@ jobs:
         with:
           #TODO:find something to copy binary with any name
           files: | 
-            /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/function_x86
-            /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/function_aarch64
+            /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/function_aarch64
+            /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/function_x86
             /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32-unknown-unknown/release/function.wasm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
