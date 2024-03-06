@@ -15,24 +15,32 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions-rust-lang/setup-rust-toolchain@v1
       - run: sudo apt-get update
+      #wasm
       - run: rustup component add rust-std
       - run: rustup target add wasm32-unknown-unknown
       - run: cargo test
       - run: cargo fmt
       - run: cargo build --target=wasm32-unknown-unknown --release
+      - run: mv $(find target/wasm32-unknown-unknown/release/ -maxdepth 1 -executable -type f) target/wasm32-unknown-unknown/release/function.wasm
       - run: ls -al target/
+      #x86
       - run: rustup target install x86_64-unknown-linux-gnu
       - run: sudo apt install gcc-multilib
       - run: cargo build --target=x86_64-unknown-linux-gnu --release
+      - run: mv $(find target/x86_64-unknown-linux-gnu/release/ -maxdepth 1 -executable -type f) target/x86_64-unknown-linux-gnu/release/function_x86
       - run: ls -al target/
-      #add dependencies for aarch64
+      #aarch64
       - run: rustup target install aarch64-unknown-linux-gnu
       - run: sudo apt-get install gcc-aarch64-linux-gnu
+      #aarch64 needs a bit more work
       - run: echo "[target.aarch64-unknown-linux-gnu]" > ~/.cargo/config.toml
       - run: echo "linker = \"aarch64-linux-gnu-gcc\"" >> ~/.cargo/config.toml
       - run: cargo build --target=aarch64-unknown-linux-gnu --release
-      #rename the binary so it can be copied to release
-      - run: mv target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world-aarch64
+      #rename the binary so it can be copied to release 
+      #TODO: adapt this to any name
+      #- run: mv target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world-aarch64
+      # find the binary and rename it to aarch64
+      - run: mv $(find target/aarch64-unknown-linux-gnu/release/ -maxdepth 1 -executable -type f) target/aarch64-unknown-linux-gnu/release/function_aarch64
       - run: ls -al target/aarch64-unknown-linux-gnu/release/
       - run: ls -al target/x86_64-unknown-linux-gnu/release/
       - run: ls -al target/wasm32-unknown-unknown/release/
@@ -40,10 +48,11 @@ jobs:
       - name: publish a release
         uses: softprops/action-gh-release@v1
         with:
+          #TODO:find something to copy binary with any name
           files: | 
-            /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world-aarch64
-            /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/edgeless_sample_hello_world
-            /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32-unknown-unknown/release/edgeless_sample_hello_world.wasm
+            /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/function_x86
+            /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/function_aarch64
+            /home/runner/work/edgeless-functions/edgeless-functions/target/wasm32-unknown-unknown/release/function.wasm
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           tag: ${{ github.ref_name }}
