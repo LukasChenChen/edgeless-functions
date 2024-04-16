@@ -4,7 +4,7 @@ on:
   push:
     #pattern matched against refs/tags
     tags:
-      - 'compile*'
+      - '*compile'
 # add persmission for publish release
 permissions:
   contents: write

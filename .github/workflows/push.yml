@@ -22,8 +22,8 @@ jobs:
         id: file
         run: echo "::set-output name=id::$(cat id.json | jq -r '.id')"
 
-      - name: print returned id
-        run: echo ${{steps.file.outputs.id}
+      # - name: print returned id
+      #   run: echo ${{ steps.file.outputs.id }}
 
       - name: push-id  
         run: |
