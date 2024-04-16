@@ -4,7 +4,7 @@ on:
   push:
     #pattern matched against refs/tags
     tags:
-      - '*'
+      - 'compile*'
 # add persmission for publish release
 permissions:
   contents: write
@@ -37,9 +37,6 @@ jobs:
       - run: echo "linker = \"aarch64-linux-gnu-gcc\"" >> ~/.cargo/config.toml
       - run: cargo build --target=aarch64-unknown-linux-gnu --release
       #rename the binary so it can be copied to release 
-      #TODO: adapt this to any name
-      #- run: mv target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world target/aarch64-unknown-linux-gnu/release/edgeless_sample_hello_world-aarch64
-      # find the binary and rename it to aarch64
       - run: mv $(find target/aarch64-unknown-linux-gnu/release/ -maxdepth 1 -executable -type f) target/aarch64-unknown-linux-gnu/release/function_aarch64
       - run: ls -al target/aarch64-unknown-linux-gnu/release/
       - run: ls -al target/x86_64-unknown-linux-gnu/release/
@@ -48,7 +45,6 @@ jobs:
       - name: publish a release
         uses: softprops/action-gh-release@v1
         with:
-          #TODO:find something to copy binary with any name
           files: | 
             /home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/function_aarch64
             /home/runner/work/edgeless-functions/edgeless-functions/target/x86_64-unknown-linux-gnu/release/function_x86

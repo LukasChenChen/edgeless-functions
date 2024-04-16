@@ -1,0 +1,41 @@
+name: push  ##push to the function repository
+run-name: ${{ github.actor }} is compling binaries for Rust
+on:
+  push:
+    #pattern matched against refs/tags
+    tags:
+      - 'push*'
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: post-upload
+        run: |
+          curl -X 'POST' \
+          'https://function-repository.edgeless.wlilab.eu/api/admin/function/upload' \
+          -H 'accept: application/json' \
+          -H 'Content-Type: multipart/form-data' \
+          -F 'file=https://github.com/LukasChenChen/edgeless-functions/releases/tag/v0.2/function.wasm'
+          -o response.json
+      - name: get returned id
+        id: file
+        run: echo "::set-output name=id::$(cat id.json | jq -r '.id')"
+
+      - name: print returned id
+        run: echo ${{steps.file.outputs.id}
+
+      - name: push-id  
+        run: |
+               curl -X 'POST' \
+               'https://function-repository.edgeless.wlilab.eu/api/admin/function' \
+               -H 'accept: application/json' \
+               -H 'Content-Type: application/json' \
+               -d '{
+               "function_type": "RUST_WASM",
+               "id": "http_requestor",
+               "version": "0.1",
+               "code_file_id": steps.file.outputs.id,
+               "outputs": [
+                 "success_cb",
+                 "failure_cb" ]}'
