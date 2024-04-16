@@ -16,7 +16,7 @@ jobs:
           'https://function-repository.edgeless.wlilab.eu/api/admin/function/upload' \
           -H 'accept: application/json' \
           -H 'Content-Type: multipart/form-data' \
-          -F 'file=https://github.com/LukasChenChen/edgeless-functions/releases/tag/v0.2/function.wasm'
+          -F 'file=https://github.com/LukasChenChen/edgeless-functions/releases/tag/v0.2/function.wasm' \
           -o response.json
       - name: get returned id
         id: file
