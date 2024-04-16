@@ -16,7 +16,7 @@ jobs:
           'https://function-repository.edgeless.wlilab.eu/api/admin/function/upload' \
           -H 'accept: application/json' \
           -H 'Content-Type: multipart/form-data' \
-          -F 'file=https://github.com/LukasChenChen/edgeless-functions/releases/tag/v0.2/function.wasm' \
+          -F 'file=/home/runner/work/edgeless-functions/edgeless-functions/target/aarch64-unknown-linux-gnu/release/function_aarch64' \
           -u 'edgeless:zaixYWHcBtmsNWH' \
           -o response.json
       - name: get returned id
@@ -37,7 +37,7 @@ jobs:
                -H 'Content-Type: application/json' \
                -d '{
                "function_type": "RUST_WASM",
-               "id": "http_requestor",
+               "id": "cam_test_5",
                "version": "0.1",
                "code_file_id": steps.file.outputs.id,
                "outputs": [
