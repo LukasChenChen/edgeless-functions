@@ -17,13 +17,17 @@ jobs:
           -H 'accept: application/json' \
           -H 'Content-Type: multipart/form-data' \
           -F 'file=https://github.com/LukasChenChen/edgeless-functions/releases/tag/v0.2/function.wasm' \
+          -u 'edgeless@zaixYWHcBtmsNWH' \
           -o response.json
       - name: get returned id
         id: file
         run: echo "::set-output name=id::$(cat id.json | jq -r '.id')"
 
-      # - name: print returned id
-      #   run: echo ${{ steps.file.outputs.id }}
+      - name: print response
+        run: cat response.json
+
+      - name: print returned id
+        run: echo ${{ steps.file.outputs.id }}
 
       - name: push-id  
         run: |
@@ -38,4 +42,9 @@ jobs:
                "code_file_id": steps.file.outputs.id,
                "outputs": [
                  "success_cb",
-                 "failure_cb" ]}'
+                 "failure_cb" ]}' \
+               -o final_response.json
+      
+
+      - name: print final response
+        run: cat final_response.json
