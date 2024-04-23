@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-
       - name: download release
-      - uses: robinraju/release-downloader@v1.10
+        uses: robinraju/release-downloader@v1.10
         with:
           repository: "" 
           latest: true
           tarBall: false
           zipBall: false
+
       - name: show
         run: ls -al
 
