@@ -10,6 +10,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+
+      - name: download release
+      - uses: robinraju/release-downloader@v1.10
+        with:
+          repository: "" 
+          latest: true
+          tarBall: false
+          zipBall: false
+      - name: show
+        run: ls -al
+
       - name: post-upload
         run: |
           curl -X 'POST' \
@@ -35,6 +46,7 @@ jobs:
                'https://function-repository.edgeless.wlilab.eu/api/admin/function' \
                -H 'accept: application/json' \
                -H 'Content-Type: application/json' \
+               -u 'edgeless:zaixYWHcBtmsNWH' \
                -d '{
                "function_type": "RUST_WASM",
                "id": "cam_test_5",
