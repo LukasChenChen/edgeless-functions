@@ -46,17 +46,17 @@ jobs:
       - name: push-id  
         run: |
                curl -X 'POST' \
-               'https://function-repository.edgeless.wlilab.eu/api/admin/function' \
-               -H 'accept: application/json' \
-               -H 'Content-Type: application/json' \
-               -u 'edgeless:zaixYWHcBtmsNWH' \
-               -d '{
-               "function_type": "RUST_WASM",
-               "id": "cam_test_5",
-               "version": "0.1",
-               "code_file_id": "${{ steps.file.outputs.id }}" \
-               }' \
-               -o final_response.json
+                 'https://function-repository.edgeless.wlilab.eu/api/admin/function' \
+                 -H 'accept: application/json' \
+                 -H 'Content-Type: application/json' \
+                 -u 'edgeless:zaixYWHcBtmsNWH' \
+                 -d '{
+                 "function_type": "RUST_WASM",
+                 "id": "cam_test_5",
+                 "version": "0.1",
+                 "code_file_id": "${{ steps.file.outputs.id }}" \
+                 }' \
+                 -o final_response.json
               #  "outputs": [
               #    "success_cb",
               #    "failure_cb"],}' \
