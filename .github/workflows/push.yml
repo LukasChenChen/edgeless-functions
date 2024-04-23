@@ -54,7 +54,7 @@ jobs:
                "function_type": "RUST_WASM",
                "id": "cam_test_5",
                "version": "0.1",
-               "code_file_id": ${{ steps.file.outputs.id }}, }' \
+               "code_file_id": ${{ steps.file.outputs.id }} , }' \
                -o final_response.json
               #  "outputs": [
               #    "success_cb",
