@@ -57,7 +57,7 @@ jobs:
                "code_file_id": ${{ steps.file.outputs.id }},
                "outputs": [
                  "success_cb",
-                 "failure_cb" ],}' \
+                 "failure_cb", ],}' \
                -o final_response.json
       
 
